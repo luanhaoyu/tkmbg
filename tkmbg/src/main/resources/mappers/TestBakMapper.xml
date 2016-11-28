@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="oracle.mapper.TestBakMapper">
+  <resultMap id="BaseResultMap" type="oracle.model.TestBak">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="B_NAME" jdbcType="DECIMAL" property="bName" />
+    <result column="B_DESC" jdbcType="VARCHAR" property="bDesc" />
+    <result column="B_DATE" jdbcType="DATE" property="bDate" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ The MIT License (MIT)
+  ~
+  ~ Copyright (c) 2014-2016 abel533@gmail.com
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in
+  ~ all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  ~ THE SOFTWARE.
+  -->
+
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<properties resource="./config/config.properties" />
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+    <property name="javaFileEncoding" value="UTF-8"/>
+    
+    <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+<!--  hsqldb -->
+<!--       <property name="mappers" value="tk.mybatis.mapper.common.Mapper,tk.mybatis.mapper.hsqldb.HsqldbMapper"/> -->
+     <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+      <property name="caseSensitive" value="true"/>
+      <!--<property name="beginningDelimiter" value="`"/>-->
+      <!--<property name="endingDelimiter" value="`"/>-->
+       <!-- caseSensitive默认false，当数据库表名区分大小写时，可以将该属性设置为true -->
+<!--       <property name="caseSensitive" value="true"/> -->
+    </plugin>
+
+<!-- mysql -->
+<!--     <jdbcConnection driverClass="com.mysql.jdbc.Driver" -->
+<!--                     connectionURL="jdbc:mysql://localhost:3306/yichaodata?useUnicode=true&amp;characterEncoding=UTF-8" -->
+<!--                     userId="yichao" -->
+<!--                     password="asb#1234"> -->
+<!--     </jdbcConnection> -->
+<!--     oracle -->
+<!--       <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" -->
+<!--                     connectionURL="jdbc:oracle:thin:@172.16.4.97:1521:URPDB" -->
+<!--                     userId="usr_zzfw_v3" -->
+<!--                     password="wisedu"> -->
+<!-- 		</jdbcConnection> -->
+     <jdbcConnection driverClass="${db.driver}"
+			connectionURL="${db.url}" userId="${db.user}" password="${db.password}">
+    </jdbcConnection>
+    <javaModelGenerator targetPackage="oracle.model" targetProject="./src/main/java"/>
+
+    <sqlMapGenerator targetPackage="mappers" targetProject="./src/main/resources"/>
+
+    <javaClientGenerator targetPackage="oracle.mapper" targetProject="./src/main/java" type="XMLMAPPER"/>
+
+<!--     <table tableName="wx_counter" > -->
+<!--      <generatedKey column="counter_id" sqlStatement="Mysql" identity="true"/> -->
+<!--           <generatedKey column="counter_id" sqlStatement="Mysql" identity="true"/> -->
+<!--  hsqldb     <generatedKey column="id" sqlStatement="JDBC"/> -->
+<!--     </table> -->
+<!-- 	<table tableName="wx_dictionary" > -->
+<!--      <generatedKey  column="name" sqlStatement="Mysql" identity="true"/> -->
+     	
+<!--     </table> -->
+    
+<!--     oracle -->
+	<table tableName="test_bak" >
+      <generatedKey column="b_name" sqlStatement="T_ZZFW_YYFA_BJ_SEQUENCE" />
+    </table>
+    
+  </context>
+</generatorConfiguration>

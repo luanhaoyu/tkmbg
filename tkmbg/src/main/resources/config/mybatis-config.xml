@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<!-- main函数没有日志，增加如下配置 -->
+	<settings>
+		<setting name="logImpl" value="LOG4J" />
+	</settings>
+	<typeAliases>
+	</typeAliases>
+	<!-- plugins 只能位于typeAliases后否则报错 -->
+<!-- 	<mappers> -->
+		<!-- 自动扫描这里无需配置 -->
+<!-- 	</mappers> -->
+</configuration>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"
+	debug="false">
+    <!-- 输入到控制台的日志信息 INFO到WARN -->
+	<appender name="Console" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p %l %t - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- 正常的日记文件INFO到ERROR --> 
+	<appender name="weixinbase"
+		class="org.apache.log4j.RollingFileAppender">
+		<param name="Encoding" value="UTF-8" />
+		<param name="File" value="./weixinbase.log" />
+		<param name="MaxFileSize" value="20MB" />
+		<param name="MaxBackupIndex" value="50" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p %l %t - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<param name="LevelMax" value="ERROR" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
+	<!--加入命名空间日志级别 main函数支持日志	-->
+	<logger name="com" additivity="true">
+		<level value="DEBUG" />
+	</logger>
+	<!-- main函数没有日志，增加mybatis.config.xml如下配置 -->
+<!--   <settings> -->
+<!--         <setting name="logImpl" value="LOG4J"/> -->
+<!--   </settings> -->
+	
+	<logger name="oracle.mapper" additivity="true">
+		<level value="DEBUG" />
+<!--		<appender-ref ref="LOG.DEBUG" />-->
+	</logger>
+	
+	<logger name="tk.mybatis.mapper.common" additivity="true">
+		<level value="DEBUG" />
+<!--		<appender-ref ref="LOG.DEBUG" />-->
+	</logger>
+	
+
+	
+	<logger name="com.ibatis" additivity="true">
+		<level value="DEBUG" />
+	</logger>
+
+	<logger name="java.sql.Connection" additivity="true">
+		<level value="DEBUG" />
+	</logger>
+
+	<logger name="java.sql.Statement" additivity="true">
+		<level value="DEBUG" />
+	</logger>
+
+	<logger name="java.sql.PreparedStatement" additivity="true">
+		<level value="DEBUG" />
+	</logger>
+	<root>
+		<level value="INFO" /><!--需要更多调试信息时，把File改为Daily，并把以rule.开头的logger改为DEBUG级别-->
+		<appender-ref ref="weixinbase" />
+		<appender-ref ref="Console" />
+	</root>
+</log4j:configuration>
+
